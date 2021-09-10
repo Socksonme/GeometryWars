@@ -12,8 +12,11 @@ class Bullet {
         SDL_Rect rect = {0, 0, 5, 10};
         int vel;
         int angle;
-        void Move();
+        int lifetime = 1000;
+        Uint32 start_time = SDL_GetTicks();
+        int Move(int w, int h);
         void Draw();
+
 };
 
 #endif // BULLET_H_

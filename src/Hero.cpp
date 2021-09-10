@@ -31,13 +31,13 @@ void Hero::Move(const Uint8* state, int width, int height) {
         angle += 5;
     }
 
-    if (vel < -10) {
+    if (vel < max_vel * -1) {
         vel = -10;
     }
-    else if (vel > 10) {
+    else if (vel > max_vel) {
         vel = 10;
     }
-
+    // if you're not currently moving
     if (vel < 0 && !(w_or_s)) {
         vel += 1;
     }
@@ -45,6 +45,7 @@ void Hero::Move(const Uint8* state, int width, int height) {
         vel -= 1;
     }
 
+    // move amount
     rect.y += std::sin((angle - 90) * PI / 180) * vel;
     rect.x += std::cos((angle - 90) * PI / 180) * vel;
 

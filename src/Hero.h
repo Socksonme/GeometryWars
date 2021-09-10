@@ -10,6 +10,7 @@ class Hero {
         SDL_Rect rect;
         int angle;
         int vel = 0;
+        int max_vel = 10;
         void Draw();
         // i hate this | (passing x, y, w and h, instead of an SDL_Rect)
         //             v

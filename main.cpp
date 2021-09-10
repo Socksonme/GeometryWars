@@ -77,11 +77,14 @@ int main(int agrc, char* argv[]) {
         for (int i = 0; i < enemies.size(); i++) {
             enemies[i] -> Move(h1, mode.w, mode.h);
         }
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets[i] -> Move();
+        for (std::vector<Bullet*>::iterator it = bullets.begin(); it < bullets.end(); it++) {
+            if((*it) -> Move(mode.w, mode.h)) {
+                delete((*it));
+                it = bullets.erase(it);
+            }
         }
         if (state[SDL_SCANCODE_SPACE]) {
-            new_bullet = new Bullet(main_renderer, bullet_img, h1.rect.x + h1.rect.w / 2, h1.rect.y + h1.rect.h / 2, h1.angle, h1.vel * 2);
+            new_bullet = new Bullet(main_renderer, bullet_img, h1.rect.x + h1.rect.w / 2, h1.rect.y + h1.rect.h / 2, h1.angle, h1.max_vel * 2);
             bullets.push_back(new_bullet);
         }
 
