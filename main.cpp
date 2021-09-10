@@ -28,7 +28,7 @@ int main(int agrc, char* argv[]) {
     background = loadTextureFromBMP("assets/images/background.bmp", main_renderer);
 
     Hero h1;
-    h1.Init(20, 20, 55, 52, "assets/images/hero.bmp", main_renderer, SDL_FLIP_NONE, 135);
+    h1.Init(20, 20, 55, 52, "assets/images/hero.bmp", main_renderer, SDL_FLIP_NONE, 0);
     std::vector<Enemy*> enemies;
     for (int i = 0; i < 10; i++) {
         Enemy* enemy = new Enemy();
@@ -43,7 +43,9 @@ int main(int agrc, char* argv[]) {
     }
 
     SDL_Event evt;
+    const Uint8* state = SDL_GetKeyboardState(NULL);
     while (true) {
+        SDL_PollEvent(&evt);
 
         SDL_RenderClear(main_renderer);
 
@@ -56,8 +58,7 @@ int main(int agrc, char* argv[]) {
         // render scene
         SDL_RenderPresent(main_renderer);
 
-        h1.Move(MOVE_DOWN, mode.w, mode.h);
-        h1.Move(MOVE_RIGHT, mode.w, mode.h);
+        h1.Move(state, mode.w, mode.h);
 
         for (int i = 0; i < enemies.size(); i++) {
             enemies[i] -> Move(h1, mode.w, mode.h);

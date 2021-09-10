@@ -16,7 +16,7 @@ class Hero {
         // i hate this | (passing x, y, w and h, instead of an SDL_Rect)
         //             v
         void Init(int x, int y, int w, int h, std::string tex_path, SDL_Renderer* rend, SDL_RendererFlip rend_flip = SDL_FLIP_NONE, int ang = 0);
-        void Move(int direction, int width, int height);
+        void Move(const Uint8* state, int width, int height);
 
     private:
         int angle;

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1631254247 source:d:\documents\geometrywars\main.cpp
+1631258560 source:d:\documents\geometrywars\main.cpp
 	<iostream>
 	<vector>
 	"SDL2/SDL.h"
@@ -435,9 +435,10 @@
 	"Hero.h"
 	"globals.h"
 
-1631218782 source:d:\documents\geometrywars\src\hero.cpp
+1631258695 source:d:\documents\geometrywars\src\hero.cpp
 	"Hero.h"
 	"globals.h"
+	<math.h>
 
 1631254205 source:d:\documents\geometrywars\src\enemy_fast.cpp
 	<iostream>
@@ -454,7 +455,7 @@
 	"SDL2/SDL.h"
 	"Hero.h"
 
-1631253417 d:\documents\geometrywars\src\hero.h
+1631258126 d:\documents\geometrywars\src\hero.h
 	<string>
 	"SDL2/SDL.h"
 
