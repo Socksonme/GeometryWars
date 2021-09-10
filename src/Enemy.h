@@ -6,16 +6,14 @@
 class Enemy {
     public:
         SDL_Rect rect;
+        int angle;
         void Draw();
         virtual void Move(Hero player, int width, int height);
-        void Init(int x, int y, int w, int h, std::string tex_path, SDL_Renderer* rend, SDL_RendererFlip rend_flip = SDL_FLIP_NONE, int ang = 0);
+        void Init(int x, int y, int w, int h, SDL_Texture* texture, SDL_Renderer* rend, SDL_RendererFlip rend_flip = SDL_FLIP_NONE, int ang = 0);
     protected:
-        int angle;
         SDL_RendererFlip flip;
         SDL_Texture* tex;
         SDL_Renderer* renderer;
-        std::string path;
-        void SetTexture();
         int x_vel = 0;
         int y_vel = 0;
 };

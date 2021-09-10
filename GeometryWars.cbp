@@ -37,6 +37,8 @@
 			<Add directory="dep/lib" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Bullet.cpp" />
+		<Unit filename="src/Bullet.h" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/Enemy.h" />
 		<Unit filename="src/Enemy_fast.cpp" />
