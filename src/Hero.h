@@ -3,10 +3,6 @@
 #ifndef HERO_H_
 #define HERO_H_
 
-#define MOVE_UP 0b0001
-#define MOVE_DOWN 0b0010
-#define MOVE_LEFT 0b0100
-#define MOVE_RIGHT 0b1000
 
 
 class Hero {
@@ -25,8 +21,7 @@ class Hero {
         SDL_Renderer* renderer;
         std::string path;
         void SetTexture();
-        int x_vel = 0;
-        int y_vel = 0;
+        int vel = 0;
 };
 
 #endif // HERO_H_

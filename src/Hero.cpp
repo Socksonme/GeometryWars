@@ -1,7 +1,6 @@
 #include "Hero.h"
 #include "globals.h"
 #include <math.h>
-#define PI 3.14159
 
 void Hero::Init(int x, int y, int w, int h, std::string tex_path, SDL_Renderer* rend, SDL_RendererFlip rend_flip, int ang) {
     rect = {x, y, w, h};
@@ -16,24 +15,35 @@ void Hero::Init(int x, int y, int w, int h, std::string tex_path, SDL_Renderer* 
 
 }
 void Hero::Move(const Uint8* state, int width, int height) {
-    x_vel = 0;
-    y_vel = 0;
+
     if (state[SDL_SCANCODE_W]) {
-        y_vel = -5;
+        vel += 2;
     }
     if(state[SDL_SCANCODE_S]) {
-        y_vel = 5;
+        vel -= 2;
     }
     if(state[SDL_SCANCODE_A]) {
-        x_vel = -5;
+        angle -= 5;
     }
     if(state[SDL_SCANCODE_D]) {
-        x_vel = 5;
+        angle += 5;
     }
-    angle = std::round(std::atan2(y_vel, x_vel) * (180 / PI)) + 90;
-    rect.y += y_vel;
-    rect.x += x_vel;
-    // use atan2 for angle
+    if (vel < -10) {
+        vel = -10;
+    }
+    else if (vel > 10) {
+        vel = 10;
+    }
+    if (vel < 0) {
+        vel += 1;
+    }
+    else if (vel > 0) {
+        vel -= 1;
+    }
+
+    rect.y += std::sin((angle - 90) * PI / 180) * vel;
+    rect.x += std::cos((angle - 90) * PI / 180) * vel;
+
     if (rect.x < 0) {
          rect.x = 0;
     }
@@ -54,3 +64,4 @@ void Hero::SetTexture() {
 void Hero::Draw() {
     SDL_RenderCopyEx(renderer, tex, NULL, &rect, angle, NULL, flip);
 }
+
