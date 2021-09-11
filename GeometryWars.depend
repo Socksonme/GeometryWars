@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1631351957 source:d:\documents\geometrywars\main.cpp
+1631357419 source:d:\documents\geometrywars\main.cpp
 	<iostream>
 	<vector>
 	"SDL2/SDL.h"
@@ -433,17 +433,17 @@
 	"Enemy.h"
 	"Hero.h"
 
-1631346360 source:d:\documents\geometrywars\src\enemy.cpp
+1631357514 source:d:\documents\geometrywars\src\enemy.cpp
 	"globals.h"
 	"Enemy.h"
 	"Hero.h"
 
-1631342757 source:d:\documents\geometrywars\src\hero.cpp
+1631357507 source:d:\documents\geometrywars\src\hero.cpp
 	"Hero.h"
 	"globals.h"
 	<math.h>
 
-1631262978 source:d:\documents\geometrywars\src\enemy_fast.cpp
+1631357523 source:d:\documents\geometrywars\src\enemy_fast.cpp
 	<iostream>
 	"Enemy_fast.h"
 	"globals.h"
@@ -454,23 +454,24 @@
 	"Enemy.h"
 	"Hero.h"
 
-1631343133 d:\documents\geometrywars\src\enemy.h
+1631357455 d:\documents\geometrywars\src\enemy.h
 	<string>
 	"SDL2/SDL.h"
 	"Hero.h"
 	"Entity.h"
 
-1631342757 d:\documents\geometrywars\src\hero.h
+1631357453 d:\documents\geometrywars\src\hero.h
 	<string>
 	"Entity.h"
 	"SDL2/SDL.h"
 
-1631262975 source:d:\documents\geometrywars\src\globals.cpp
+1631357218 source:d:\documents\geometrywars\src\globals.cpp
 	"SDL2/SDL.h"
 	"globals.h"
 	<math.h>
+	<algorithm>
 
-1631263665 d:\documents\geometrywars\src\globals.h
+1631357218 d:\documents\geometrywars\src\globals.h
 	"SDL2/SDL.h"
 
 1631343274 source:d:\documents\geometrywars\src\bullet.cpp

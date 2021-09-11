@@ -1,6 +1,7 @@
 #include "SDL2/SDL.h"
 #include "globals.h"
 #include <math.h>
+#include <algorithm>
 SDL_Texture* loadTextureFromBMP(const char* path, SDL_Renderer* renderer) {
     SDL_Surface* tmp = SDL_LoadBMP(path);
     SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, tmp);
@@ -37,4 +38,16 @@ int PointTo(SDL_Rect rect, int x, int y) {
         }
     }
     return (std::round(std::atan2(y_dist, x_dist) * (180 / PI)) + 90);
+}
+bool Collision(SDL_Rect r1, SDL_Rect r2) {
+    int top    = std::min(r1.y, r2.y);
+    int bottom = std::max(r1.y + r1.h, r2.y + r2.h);
+
+    int left    = std::min(r1.x, r2.x);
+    int right   = std::max(r1.x + r1.w, r2.x + r2.w);
+
+    if (bottom-top > r1.h + r2.h)  {return false;}
+    if (right-left > r1.w + r2.w) {return false;}
+
+    return true;
 }

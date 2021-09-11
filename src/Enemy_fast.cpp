@@ -6,7 +6,9 @@
 
 void EnemyFast::Move(Hero player, int width, int height) {
 
-
+    if (health <= 0) {
+        return;
+    }
     x_vel = 0;
     y_vel = 0;
     angle = PointTo(rect, player.rect.x, player.rect.y);

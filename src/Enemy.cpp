@@ -12,7 +12,6 @@ void Enemy::Init(int x, int y, int w, int h, SDL_Texture* tex, SDL_Renderer* ren
     texture = tex;
 }
 void Enemy::Move(Hero player, int width, int height) {
-
     if (!y_vel) {
         switch (rand() % 2) {
             case 0:

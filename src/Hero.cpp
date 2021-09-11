@@ -32,10 +32,10 @@ void Hero::Move(const Uint8* state, int width, int height) {
     }
 
     if (vel < max_vel * -1) {
-        vel = -10;
+        vel = max_vel * -1;
     }
     else if (vel > max_vel) {
-        vel = 10;
+        vel = max_vel;
     }
     // if you're not currently moving
     if (vel < 0 && !(w_or_s)) {

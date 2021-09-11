@@ -11,6 +11,7 @@ class Bullet {
         SDL_Texture* texture = nullptr;
 
         SDL_Rect rect = {0, 0, 5, 10};
+        int health = 1;
         int vel;
         int angle;
         int lifetime = 1000;

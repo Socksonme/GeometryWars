@@ -122,6 +122,29 @@ int main(int agrc, char* argv[]) {
             Mix_PlayChannel(-1, fire_sound, 0);
         }
 
+        for (int i = 0; i < enemies.size(); i++) {
+            if (Collision(enemies[i] -> rect, h1.rect)) {
+                h1.health--;
+            }
+            for (std::vector<Bullet*>::iterator it = bullets.begin(); it < bullets.end(); it++) {
+                if (Collision(enemies[i] -> rect, (*it) -> rect)) {
+                    enemies[i] -> health--;
+                    (*it) -> health--;
+                }
+            }
+        }
+        for (std::vector<Bullet*>::iterator it = bullets.begin(); it < bullets.end(); it++) {
+            if ((*it) -> health <= 0) {
+                delete((*it));
+                it = bullets.erase(it);
+            }
+        }
+        for (std::vector<Enemy*>::iterator it = enemies.begin(); it < enemies.end(); it++) {
+            if ((*it) -> health <= 0) {
+                delete((*it));
+                it = enemies.erase(it);
+            }
+        }
 
         SDL_Delay(25);
     }

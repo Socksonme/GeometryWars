@@ -8,6 +8,7 @@ Bullet::Bullet(SDL_Renderer* rend, SDL_Texture* tex, int x, int y, int ang, int 
     renderer = rend;
     texture = tex;
 
+
     rect.x = x;
     rect.y = y;
 

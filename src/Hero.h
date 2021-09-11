@@ -9,6 +9,7 @@
 class Hero : public Entity {
     public:
         int vel = 0;
+        int health = 1;
         int max_vel = 10;
         // i hate this | (passing x, y, w and h, instead of an SDL_Rect)
         //             v
