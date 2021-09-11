@@ -35,7 +35,7 @@
 			<Add directory="dep/include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer" />
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_ttf" />
 			<Add directory="dep/lib" />
 		</Linker>
 		<Unit filename="main.cpp" />

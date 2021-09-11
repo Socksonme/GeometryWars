@@ -2,6 +2,8 @@
 #include <vector>
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL_ttf.h"
+
 #include "src/globals.h"
 #include "src/Hero.h"
 #include "src/Bullet.h"
@@ -12,6 +14,7 @@
 SDL_Texture* loadTextureFromBMP(const char* path, SDL_Renderer* renderer);
 int main(int agrc, char* argv[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
 
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048)) {
         std::cout << "Mixer problem: " << Mix_GetError() << std::endl;
@@ -35,6 +38,20 @@ int main(int agrc, char* argv[]) {
 
     SDL_Window* main_window = SDL_CreateWindow("Geometry", 0, 0, mode.w, mode.h, 0);
     SDL_Renderer* main_renderer = SDL_CreateRenderer(main_window, -1, SDL_RENDERER_ACCELERATED);
+
+    TTF_Font* font = TTF_OpenFont("assets/fonts/ChronoType.ttf", 20);
+    if (font == NULL) {
+        std::cout << TTF_GetError() << std::endl;
+    }
+    SDL_Color text_color = {255, 255, 255};
+    SDL_Surface* text_surface = TTF_RenderText_Solid(font, "Hello, world!", text_color);
+    SDL_Texture* text_img = SDL_CreateTextureFromSurface(main_renderer, text_surface);
+    SDL_FreeSurface(text_surface);
+    SDL_Rect text_pos = {20, 20, 0, 0};
+    SDL_QueryTexture(text_img, NULL, NULL, &text_pos.w, &text_pos.h);
+
+
+
 
     // Get textures
     SDL_Texture* background = loadTextureFromBMP("assets/images/background.bmp", main_renderer);
@@ -73,6 +90,8 @@ int main(int agrc, char* argv[]) {
 
         // build scene
         SDL_RenderCopy(main_renderer, background, 0, 0);
+
+
         for (int i = 0; i < enemies.size(); i++) {
             enemies[i] -> Draw();
         }
@@ -80,6 +99,8 @@ int main(int agrc, char* argv[]) {
             bullets[i] -> Draw();
         }
         h1.Draw();
+
+        SDL_RenderCopy(main_renderer, text_img, NULL, &text_pos);
         // render scene
         SDL_RenderPresent(main_renderer);
 
@@ -121,7 +142,7 @@ int main(int agrc, char* argv[]) {
     main_window = nullptr;
 
 
-
+    TTF_Quit();
     SDL_Quit();
     return 0;
 }

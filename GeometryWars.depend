@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1631346879 source:d:\documents\geometrywars\main.cpp
+1631351957 source:d:\documents\geometrywars\main.cpp
 	<iostream>
 	<vector>
 	"SDL2/SDL.h"
 	"SDL2/SDL_mixer.h"
+	"SDL2/SDL_ttf.h"
 	"src/globals.h"
 	"src/Hero.h"
 	"src/Bullet.h"
@@ -498,6 +499,11 @@
 	"SDL_audio.h"
 	"SDL_endian.h"
 	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1547325890 d:\documents\geometrywars\dep\include\sdl2\sdl_ttf.h
+	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
