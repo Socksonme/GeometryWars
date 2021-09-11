@@ -12,26 +12,24 @@ SDL_Texture* loadTextureFromBMP(const char* path, SDL_Renderer* renderer);
 int main(int agrc, char* argv[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    SDL_Window* main_window = nullptr;
-    SDL_Renderer* main_renderer = nullptr;
-
-    SDL_Texture* background = nullptr;
-
     SDL_DisplayMode mode;
     for (int i = 0; i < SDL_GetNumVideoDisplays(); i++) {
         if (!(SDL_GetCurrentDisplayMode(i, &mode))) {
             break;
         }
     }
-    main_window = SDL_CreateWindow("Geometry", 0, 0, mode.w, mode.h, 0);
-    main_renderer = SDL_CreateRenderer(main_window, -1, SDL_RENDERER_ACCELERATED);
 
-    background = loadTextureFromBMP("assets/images/background.bmp", main_renderer);
+    SDL_Window* main_window = SDL_CreateWindow("Geometry", 0, 0, mode.w, mode.h, 0);
+    SDL_Renderer* main_renderer = SDL_CreateRenderer(main_window, -1, SDL_RENDERER_ACCELERATED);
+
+    // Get textures
+    SDL_Texture* background = loadTextureFromBMP("assets/images/background.bmp", main_renderer);
     SDL_Texture* hero_tex = loadTextureFromBMP("assets/images/hero.bmp", main_renderer);
-
+    SDL_Texture* bullet_tex = loadTextureFromBMP("assets/images/bullet.bmp", main_renderer);
     SDL_Texture* enemy_tex1 = loadTextureFromBMP("assets/images/enemy1.bmp", main_renderer);
     SDL_Texture* enemy_tex2 = loadTextureFromBMP("assets/images/enemy2.bmp", main_renderer);
 
+    // Initialize game objects
     Hero h1;
     h1.Init(20, 20, 55, 52, hero_tex, main_renderer, SDL_FLIP_NONE, 0);
 
@@ -51,7 +49,6 @@ int main(int agrc, char* argv[]) {
 
     std::vector<Bullet*> bullets;
     Bullet* new_bullet = nullptr;
-    SDL_Texture* bullet_img = loadTextureFromBMP("assets/images/bullet.bmp", main_renderer);
 
     SDL_Event evt;
     const Uint8* state = SDL_GetKeyboardState(NULL);
@@ -84,7 +81,8 @@ int main(int agrc, char* argv[]) {
             }
         }
         if (state[SDL_SCANCODE_SPACE]) {
-            new_bullet = new Bullet(main_renderer, bullet_img, h1.rect.x + h1.rect.w / 2, h1.rect.y + h1.rect.h / 2, h1.angle, h1.max_vel * 2);
+            new_bullet = new Bullet(main_renderer, bullet_tex, h1.rect.x + h1.rect.w / 2, h1.rect.y + h1.rect.h / 2,
+                                    h1.angle + ((rand() % 2 ? 1 : -1) * rand() % 5), h1.max_vel * 2);
             bullets.push_back(new_bullet);
         }
 
@@ -99,6 +97,7 @@ int main(int agrc, char* argv[]) {
         delete (bullets[i]);
     }
     bullets.clear();
+
 
     SDL_DestroyRenderer(main_renderer);
     main_renderer = nullptr;

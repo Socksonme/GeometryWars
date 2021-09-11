@@ -2,7 +2,7 @@
 #include "globals.h"
 #include <math.h>
 
-void Hero::Init(int x, int y, int w, int h, SDL_Texture* texture, SDL_Renderer* rend, SDL_RendererFlip rend_flip, int ang) {
+void Hero::Init(int x, int y, int w, int h, SDL_Texture* tex, SDL_Renderer* rend, SDL_RendererFlip rend_flip, int ang) {
     rect = {x, y, w, h};
 
     renderer = rend;
@@ -10,7 +10,7 @@ void Hero::Init(int x, int y, int w, int h, SDL_Texture* texture, SDL_Renderer* 
     flip = rend_flip;
     angle = ang;
 
-    tex = texture;
+    texture = tex;
 
 }
 void Hero::Move(const Uint8* state, int width, int height) {
@@ -39,10 +39,10 @@ void Hero::Move(const Uint8* state, int width, int height) {
     }
     // if you're not currently moving
     if (vel < 0 && !(w_or_s)) {
-        vel += 1;
+        vel += 2;
     }
     else if (vel > 0 && !(w_or_s)) {
-        vel -= 1;
+        vel -= 2;
     }
 
     // move amount
@@ -62,7 +62,5 @@ void Hero::Move(const Uint8* state, int width, int height) {
         rect.y = height - rect.h;
     }
 }
-void Hero::Draw() {
-    SDL_RenderCopyEx(renderer, tex, NULL, &rect, angle, NULL, flip);
-}
+
 

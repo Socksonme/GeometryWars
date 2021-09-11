@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "Hero.h"
 #include "globals.h"
-void Enemy::Init(int x, int y, int w, int h, SDL_Texture* texture, SDL_Renderer* rend, SDL_RendererFlip rend_flip, int ang) {
+void Enemy::Init(int x, int y, int w, int h, SDL_Texture* tex, SDL_Renderer* rend, SDL_RendererFlip rend_flip, int ang) {
     rect = {x, y, w, h};
 
     renderer = rend;
@@ -9,7 +9,7 @@ void Enemy::Init(int x, int y, int w, int h, SDL_Texture* texture, SDL_Renderer*
     flip = rend_flip;
     angle = ang;
 
-    tex = texture;
+    texture = tex;
 }
 void Enemy::Move(Hero player, int width, int height) {
 
@@ -57,6 +57,4 @@ void Enemy::Move(Hero player, int width, int height) {
         rect.y = height - rect.h;
     }
 }
-void Enemy::Draw() {
-    SDL_RenderCopyEx(renderer, tex, NULL, &rect, angle, NULL, flip);
-}
+
