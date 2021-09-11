@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_mixer.h"
 #include "src/globals.h"
 #include "src/Hero.h"
 #include "src/Bullet.h"
@@ -11,6 +12,19 @@
 SDL_Texture* loadTextureFromBMP(const char* path, SDL_Renderer* renderer);
 int main(int agrc, char* argv[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
+
+    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048)) {
+        std::cout << "Mixer problem: " << Mix_GetError() << std::endl;
+    }
+    Mix_Music* background_music;
+    Mix_Chunk* fire_sound;
+
+    background_music = Mix_LoadMUS("assets/music/music.mp3");
+    Mix_PlayMusic(background_music, -1);
+    Mix_VolumeMusic(20);
+
+    fire_sound = Mix_LoadWAV("assets/music/fire.wav");
+    Mix_VolumeChunk(fire_sound, 20);
 
     SDL_DisplayMode mode;
     for (int i = 0; i < SDL_GetNumVideoDisplays(); i++) {
@@ -84,6 +98,7 @@ int main(int agrc, char* argv[]) {
             new_bullet = new Bullet(main_renderer, bullet_tex, h1.rect.x + h1.rect.w / 2, h1.rect.y + h1.rect.h / 2,
                                     h1.angle + ((rand() % 2 ? 1 : -1) * rand() % 5), h1.max_vel * 2);
             bullets.push_back(new_bullet);
+            Mix_PlayChannel(-1, fire_sound, 0);
         }
 
 

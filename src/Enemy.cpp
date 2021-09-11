@@ -1,6 +1,6 @@
+#include "globals.h"
 #include "Enemy.h"
 #include "Hero.h"
-#include "globals.h"
 void Enemy::Init(int x, int y, int w, int h, SDL_Texture* tex, SDL_Renderer* rend, SDL_RendererFlip rend_flip, int ang) {
     rect = {x, y, w, h};
 

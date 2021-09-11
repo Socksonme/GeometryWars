@@ -35,10 +35,9 @@
 			<Add directory="dep/include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2" />
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer" />
 			<Add directory="dep/lib" />
 		</Linker>
-		<Unit filename="include/Entity.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Bullet.cpp" />
 		<Unit filename="src/Bullet.h" />
